@@ -7,10 +7,18 @@
 
   <div id="Details">
     <h1>Gör nån cool kundinfo sida med FireBase</h1> 
-    <H4>Student Name:</H4>
-    <input id="enterName" type="text" size="20">   
+
+    <H4>Customer Name:</H4>
+    <input id="enterName" type="text" size="20">
+
+    <H4>Email:</H4>
+    <input id="enterEmail" type="text" size="20">
+
+    <H4>Address:</H4>
+    <input id="enterAddress" type="text" size="20"> 
     
-    <button id="Insert">Proceed to checkout</button>
+    <br><br>
+    <button id="Insert">Confirm order</button>
   </div>
 
   <script type="module">
@@ -43,11 +51,15 @@
     const db = getDatabase();
 
     var enterName = document.querySelector("#enterName");
+    var enterEmail = document.querySelector("#enterEmail");
+    var enterAddress = document.querySelector("#enterAddress");
 
     var Insert = document.querySelector("#Insert");
 
     function insertData() {
       set(ref(db, "Customers/" + enterName.value), {
+          Address: enterAddress.value,
+          Email: enterEmail.value,
           Name: enterName.value
       })
       .then(()=>{
