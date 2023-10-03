@@ -4,10 +4,24 @@
 <title>checkout</title>
 </head>
 <body>
-
-  <div id="Details">
+  <div>
     <h1>Gör nån cool kundinfo sida med FireBase</h1> 
 
+    <h4>Order Details:</h4> <br>
+    <div id="Product 1" style="display: none;">Product 1 
+      <button onclick="decrement()">-</button>
+      <span id="counter1">1</span>
+      <button onclick="increment()">+</button>
+    </div>
+
+    <div id="Product 2" style="display: none;">Product 2 
+        <button onclick="decrement()">-</button>
+        <span id="counter2">1</span>
+        <button onclick="increment()">+</button>
+    </div>
+  </div>
+
+  <div id="Details">
     <H4>Customer Name:</H4>
     <input id="enterName" type="text" size="20">
 
@@ -58,9 +72,9 @@
 
     function insertData() {
       set(ref(db, "Customers/" + enterName.value), {
-          Address: enterAddress.value,
+          Name: enterName.value,
           Email: enterEmail.value,
-          Name: enterName.value
+          Address: enterAddress.value
       })
       .then(()=>{
         alert("Customer added")
