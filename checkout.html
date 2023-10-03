@@ -4,33 +4,63 @@
 <title>checkout</title>
 </head>
 <body>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyAu03SWx4j-tUBHXRWOZJ5vcpLnPJq0lKk",
-          authDomain: "pro1-dd1334.firebaseapp.com",
-          projectId: "pro1-dd1334",
-          storageBucket: "pro1-dd1334.appspot.com",
-          messagingSenderId: "874706845727",
-          appId: "1:874706845727:web:51039a82d59f97300f552a",
-          measurementId: "G-XLG9W12P3W"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
 
-<h1>Gör nån cool kundinfo sida med FireBase</h1>
-<form>  
-    Student Name:  
-    <input type="text" name="Name" size="20">   
+  <div id="Details">
+    <h1>Gör nån cool kundinfo sida med FireBase</h1> 
+    <H4>Student Name:</H4>
+    <input id="enterName" type="text" size="20">   
+    
+    <button id="Insert">Proceed to checkout</button>
+  </div>
+
+  <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyAu03SWx4j-tUBHXRWOZJ5vcpLnPJq0lKk",
+        authDomain: "pro1-dd1334.firebaseapp.com",
+        databaseURL: "https://pro1-dd1334-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "pro1-dd1334",
+        storageBucket: "pro1-dd1334.appspot.com",
+        messagingSenderId: "874706845727",
+        appId: "1:874706845727:web:51039a82d59f97300f552a",
+        measurementId: "G-XLG9W12P3W"
+      };
+    
+      // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    import {getDatabase, set, get, update, remove, ref, child}
+    from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js"
+
+    const db = getDatabase();
+
+    var enterName = document.querySelector("#enterName");
+
+    var Insert = document.querySelector("#Insert");
+
+    function insertData() {
+      set(ref(db, "Customers/" + enterName.value), {
+          Name: enterName.value
+      })
+      .then(()=>{
+        alert("Customer added")
+      })
+      .catch((error)=>{
+        alert("Error")
+      });
+
+    }
+
+    Insert.addEventListener('click', insertData);
+  </script>
+
 </body>
 </html>
