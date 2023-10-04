@@ -5,20 +5,14 @@
 </head>
 <body>
   <div>
-    <h1>Gör nån cool kundinfo sida med FireBase</h1> 
+    <h1>Checkout</h1> 
 
     <h4>Order Details:</h4> <br>
-    <div id="Product 1" style="display: none;">Product 1 
-      <button onclick="decrement()">-</button>
-      <span id="counter1">1</span>
-      <button onclick="increment()">+</button>
-    </div>
+    <!--
+      Lägg till lista med produkter i ordern(antal och sorter)
+      skicka med orderna till databasen vid knapptryck
+    -->
 
-    <div id="Product 2" style="display: none;">Product 2 
-        <button onclick="decrement()">-</button>
-        <span id="counter2">1</span>
-        <button onclick="increment()">+</button>
-    </div>
   </div>
 
   <div id="Details">
@@ -86,6 +80,17 @@
     }
 
     Insert.addEventListener('click', insertData);
+
+    const counter1Value = localStorage.getItem('counter1');
+    const counter2Value = localStorage.getItem('counter2');
+
+    if (counter1Value !== null) {
+      console.log('Counter 1:', counter1Value)
+    }
+
+    if (counter2Value !== null) {
+      console.log('Counter 2:', counter2Value);
+    }
   </script>
 
 </body>
