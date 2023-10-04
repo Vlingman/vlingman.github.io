@@ -12,28 +12,34 @@
         <div class="product">
             <h2>Product 1</h2>
             <p>Price: 100 SEK</p>
-            <button onclick="addItemToList(1), UpdateCartTotal(1)">Add to Cart</button>
+            <button onclick="displayText(1), IncrementCartTotal(1), increment1()">Add to Cart</button>
         </div>
 
         <div class="product">
             <h2>Product 2</h2>
             <p>Price: 200 SEK</p>
-            <button onclick="addItemToList(2), UpdateCartTotal(2)">Add to Cart</button>
+            <button onclick="displayText(2), IncrementCartTotal(2), increment2()">Add to Cart</button>
         </div>
 
     </div>
-    <!-- räknare för produkter, försök flytta till ett lämpligt ställe
-    <div>
-        <button onclick="decrement()">-</button>
-        <span id="counter">0</span>
-        <button onclick="increment()">+</button>
-    </div>
-    -->
     <!-- Kundvagnen, lägg till funktion för att visa/dölja, använd firebase för att spara/hämta kundinformation -->
 
     <div id="cart" class="hidden">
         <h2>Shopping Cart</h2>
         <ul id="CartItems"></ul>
+
+        <div id="Product 1" style="display: none;">Product 1 
+            <button onclick="decrement1(), DecrementCartTotal(1)">-</button>
+            <span id="counter1">1</span>
+            <button onclick="increment1(), IncrementCartTotal(1)">+</button>
+        </div>
+
+        <div id="Product 2" style="display: none;">Product 2 
+            <button onclick="decrement2(), DecrementCartTotal(2)">-</button>
+            <span id="counter2">1</span>
+            <button onclick="increment2(), IncrementCartTotal(2)">+</button>
+        </div>
+
         <ul>Total: <span id="CartTotal"></span> SEK = 
             <span id="BitcoinCartTotal"></span> BTC = 
             <span id="LitecoinCartTotal"></span> LTC = 
@@ -58,12 +64,33 @@
         let DogecoinTotal = 0;
 
         updateText();
-        function UpdateCartTotal(n) {
+        function IncrementCartTotal(n) {
             if (n==1)
                 Total += 100;
                 updateText();
             if (n==2)
                 Total += 200;
+                updateText();
+
+            const bitcoinValue = parseFloat(document.getElementById('bitcoin').textContent);
+            const litecoinValue = parseFloat(document.getElementById('litecoin').textContent);
+            const ethereumValue = parseFloat(document.getElementById('ethereum').textContent);
+            const dogecoinValue = parseFloat(document.getElementById('dogecoin').textContent);
+
+            BitcoinTotal = (1 / bitcoinValue) * Total;
+            LitecoinTotal = (1 / litecoinValue) * Total;
+            EthereumTotal = (1 / ethereumValue) * Total;
+            DogecoinTotal = (1 / dogecoinValue) * Total;
+            updateText();
+        }
+
+        updateText()
+        function DecrementCartTotal(n) {
+            if (n==1)
+                Total -= 100;
+                updateText();
+            if (n==2)
+                Total -= 200;
                 updateText();
 
             const bitcoinValue = parseFloat(document.getElementById('bitcoin').textContent);
@@ -84,17 +111,6 @@
             document.getElementById('LitecoinCartTotal').innerText = LitecoinTotal;
             document.getElementById('EthereumCartTotal').innerText = EthereumTotal;
             document.getElementById('DogecoinCartTotal').innerText = DogecoinTotal;
-        }
-        //lägg till produkter här också
-        function addItemToList(n) {
-            const itemList = document.getElementById("CartItems");
-            const newItem = document.createElement("li");
-            if (n==1)
-                newItem.textContent = "Product 1";
-            if (n==2)
-                newItem.textContent = "Product 2";
-
-            itemList.appendChild(newItem);
         }
 
         //Accepterade krypto valutor samt api för att hämta live priser för dom
@@ -119,19 +135,54 @@
 
         });
 
-        let counter = 0;
-        const counterElement = document.getElementById("counter");
+        let counter1 = 0;
+        const counter1Element = document.getElementById("counter1");
 
-        function increment() {
-            counter++;
-            counterElement.textContent = counter;
+        function increment1() {
+            counter1++;
+            counter1Element.textContent = counter1;
         }
 
-        function decrement() {
-            if (counter > 0) {
-                counter--;
-                counterElement.textContent = counter;
-            }
+        function decrement1() {
+            if (counter1 > 0) 
+                counter1--;
+                counter1Element.textContent = counter1;
+            if (counter1 == 0)
+                hideText(1) 
+        }
+
+        let counter2 = 0;
+        const counter2Element = document.getElementById("counter2");
+
+        function increment2() {
+            counter2++;
+            counter2Element.textContent = counter2;
+        }
+
+        function decrement2() {
+            if (counter2 > 0) 
+                counter2--;
+                counter2Element.textContent = counter2;''
+            if (counter2 == 0)
+                hideText(2)
+        }
+
+        function displayText(n) {
+            if (n==1)
+                var text = document.getElementById("Product 1");
+            if (n==2)
+                var text = document.getElementById("Product 2");
+            text.style.display = "block";
+        }
+
+        function hideText(n) {
+            var text1 = document.getElementById("Product 1");
+            var text2 = document.getElementById("Product 2");
+
+            if (n==1) 
+                text1.style.display = "none";
+            if (n==2)
+                text2.style.display = "none";
         }
     </script>
 </body>
