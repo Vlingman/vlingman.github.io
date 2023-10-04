@@ -1,0 +1,84 @@
+/* Reset some default browser styles */
+body, h1, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#Details {
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button#Insert {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#Insert:hover {
+  background-color: #0056b3;
+}
+
+#counter1ValueDisplay,
+#counter2ValueDisplay,
+#CartTotalDisplay,
+#BitcoinCartTotalDisplay,
+#LitecoinCartTotalDisplay,
+#EthereumCartTotalDisplay,
+#DogecoinCartTotalDisplay {
+  font-weight: bold;
+}
+
+#counter1ValueDisplay::before,
+#counter2ValueDisplay::before,
+#CartTotalDisplay::before,
+#BitcoinCartTotalDisplay::before,
+#LitecoinCartTotalDisplay::before,
+#EthereumCartTotalDisplay::before,
+#DogecoinCartTotalDisplay::before {
+  content: ": ";
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+}
