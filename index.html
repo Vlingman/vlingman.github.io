@@ -3,9 +3,10 @@
 <head>
     <title>Online Shop</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1>Online Shop</h1>
+    <header><h1>Online Shop</h1></header>
     <div id="products">
         <!-- Lägg till fler produkter här -->
 
@@ -39,12 +40,13 @@
             <span id="counter2">1</span>
             <button onclick="increment2(), IncrementCartTotal(2)">+</button>
         </div>
+        <br><br>
 
-        <ul>Total: <span id="CartTotal"></span> SEK = 
+        <div>Total: <span id="CartTotal"></span> SEK = 
             <span id="BitcoinCartTotal"></span> BTC = 
             <span id="LitecoinCartTotal"></span> LTC = 
             <span id="EthereumCartTotal"></span> ETH = 
-            <span id="DogecoinCartTotal"></span> DOGE</ul>
+            <span id="DogecoinCartTotal"></span> DOGE</div>
         <a href="https://vlingman.github.io/checkout.html">
             <button>Proceed to checkout</button>
             </a>
