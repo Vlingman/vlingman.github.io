@@ -7,18 +7,15 @@
   <div>
     <h1>Checkout</h1> 
 
-    <h4>Order Details:</h4> <br>
-    <!--
-      Lägg till lista med produkter i ordern(antal och sorter)
-      skicka med orderna till databasen vid knapptryck
-    -->
-
-  </div> Counters:
-  <span id="counter1"></span>
-  <span id="counter2"></span>
-  <div>
-
-  </div>
+    <h4>Order Details:</h4>
+    <div id="counter1ValueDisplay"></div>
+    <div id="counter2ValueDisplay"></div>
+    <div>Total: <span id="CartTotalDisplay"></span> SEK = 
+      <span id="BitcoinCartTotalDisplay"></span> BTC = 
+      <span id="LitecoinCartTotalDisplay"></span> LTC = 
+      <span id="EthereumCartTotalDisplay"></span> ETH = 
+      <span id="DogecoinCartTotalDisplay"></span> DOGE</div>
+  </div> 
 
   <div id="Details">
     <H4>Customer Name:</H4>
@@ -66,14 +63,24 @@
     var enterName = document.querySelector("#enterName");
     var enterEmail = document.querySelector("#enterEmail");
     var enterAddress = document.querySelector("#enterAddress");
-
+    var counter1 = sessionStorage.getItem("counter1");
+    var counter2 = sessionStorage.getItem("counter2");
+    var Total = sessionStorage.getItem("Total");
+    var BitcoinTotal = sessionStorage.getItem("BitcoinTotal");
+    var EthereumTotal = sessionStorage.getItem("EthereumTotal");
+    var LitecoinTotal = sessionStorage.getItem("LitecoinTotal");
+    var DogecoinTotal = sessionStorage.getItem("DogecoinTotal");
+    
     var Insert = document.querySelector("#Insert");
 
     function insertData() {
       set(ref(db, "Customers/" + enterName.value), {
           Name: enterName.value,
           Email: enterEmail.value,
-          Address: enterAddress.value
+          Address: enterAddress.value,
+          Products: counter1 + "x Product 1, " + counter2 + "x Product 2",
+          Price: Total + " SEK, " + BitcoinTotal + " BTC, " + LitecoinTotal + " LTC, " + EthereumTotal + " ETH, " + DogecoinTotal + " DOGE"
+
       })
       .then(()=>{
         alert("Customer added")
@@ -84,18 +91,35 @@
 
     }
 
+    const counter1Value = sessionStorage.getItem("counter1");
+    const counter1ValueDisplay = document.getElementById("counter1ValueDisplay");
+    counter1ValueDisplay.textContent = counter1Value + "x Product 1";
+
+    const counter2Value = sessionStorage.getItem("counter2");
+    const counter2ValueDisplay = document.getElementById("counter2ValueDisplay");   
+    counter2ValueDisplay.textContent = counter2Value + "x Product 2";
+
+    const CartTotal = sessionStorage.getItem("Total");
+    const CartTotalDisplay = document.getElementById("CartTotalDisplay");
+    CartTotalDisplay.textContent = CartTotal;
+
+    const BitcoinCartTotal = sessionStorage.getItem("BitcoinTotal");
+    const BitcoinCartTotalDisplay = document.getElementById("BitcoinCartTotalDisplay");
+    BitcoinCartTotalDisplay.textContent = BitcoinCartTotal;
+
+    const LitecoinCartTotal = sessionStorage.getItem("LitecoinTotal");
+    const LitecoinCartTotalDisplay = document.getElementById("LitecoinCartTotalDisplay");
+    LitecoinCartTotalDisplay.textContent = LitecoinCartTotal;
+
+    const EthereumCartTotal = sessionStorage.getItem("EthereumTotal");
+    const EthereumCartTotalDisplay = document.getElementById("EthereumCartTotalDisplay");
+    EthereumCartTotalDisplay.textContent = EthereumCartTotal;
+
+    const DogecoinCartTotal = sessionStorage.getItem("DogecoinTotal");
+    const DogecoinCartTotalDisplay = document.getElementById("DogecoinCartTotalDisplay");
+    DogecoinCartTotalDisplay.textContent = DogecoinCartTotal;
+
     Insert.addEventListener('click', insertData);
-
-    const counter1Value = localStorage.getItem('counter1');
-    const counter2Value = localStorage.getItem('counter2');
-
-    if (counter1Value !== null) {
-      console.log('Counter 1:', counter1Value)
-    }
-
-    if (counter2Value !== null) {
-      console.log('Counter 2:', counter2Value);
-    }
   </script>
 
 </body>
