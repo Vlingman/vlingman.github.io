@@ -48,7 +48,7 @@
             <span id="EthereumCartTotal"></span> ETH = 
             <span id="DogecoinCartTotal"></span> DOGE</div>
         <a href="https://vlingman.github.io/checkout.html">
-            <button>Proceed to checkout</button>
+            <button id="Checkout">Proceed to checkout</button>
             </a>
         <p>1 BTC = <span id="bitcoin"></span> SEK</p>
         <p>1 LTC = <span id="litecoin"></span> SEK</p>
@@ -74,10 +74,10 @@
                 Total += 200;
                 updateText();
 
-            const bitcoinValue = parseFloat(document.getElementById('bitcoin').textContent);
-            const litecoinValue = parseFloat(document.getElementById('litecoin').textContent);
-            const ethereumValue = parseFloat(document.getElementById('ethereum').textContent);
-            const dogecoinValue = parseFloat(document.getElementById('dogecoin').textContent);
+            const bitcoinValue = parseFloat(document.getElementById("bitcoin").textContent);
+            const litecoinValue = parseFloat(document.getElementById("litecoin").textContent);
+            const ethereumValue = parseFloat(document.getElementById("ethereum").textContent);
+            const dogecoinValue = parseFloat(document.getElementById("dogecoin").textContent);
 
             BitcoinTotal = (1 / bitcoinValue) * Total;
             LitecoinTotal = (1 / litecoinValue) * Total;
@@ -95,10 +95,10 @@
                 Total -= 200;
                 updateText();
 
-            const bitcoinValue = parseFloat(document.getElementById('bitcoin').textContent);
-            const litecoinValue = parseFloat(document.getElementById('litecoin').textContent);
-            const ethereumValue = parseFloat(document.getElementById('ethereum').textContent);
-            const dogecoinValue = parseFloat(document.getElementById('dogecoin').textContent);
+            const bitcoinValue = parseFloat(document.getElementById("bitcoin").textContent);
+            const litecoinValue = parseFloat(document.getElementById("litecoin").textContent);
+            const ethereumValue = parseFloat(document.getElementById("ethereum").textContent);
+            const dogecoinValue = parseFloat(document.getElementById("dogecoin").textContent);
 
             BitcoinTotal = (1 / bitcoinValue) * Total;
             LitecoinTotal = (1 / litecoinValue) * Total;
@@ -108,11 +108,11 @@
         }
 
         function updateText() {
-            document.getElementById('CartTotal').innerText = Total;
-            document.getElementById('BitcoinCartTotal').innerText = BitcoinTotal;
-            document.getElementById('LitecoinCartTotal').innerText = LitecoinTotal;
-            document.getElementById('EthereumCartTotal').innerText = EthereumTotal;
-            document.getElementById('DogecoinCartTotal').innerText = DogecoinTotal;
+            document.getElementById("CartTotal").innerText = Total;
+            document.getElementById("BitcoinCartTotal").innerText = BitcoinTotal;
+            document.getElementById("LitecoinCartTotal").innerText = LitecoinTotal;
+            document.getElementById("EthereumCartTotal").innerText = EthereumTotal;
+            document.getElementById("DogecoinCartTotal").innerText = DogecoinTotal;
         }
 
         //Accepterade krypto valutor samt api för att hämta live priser för dom
@@ -164,10 +164,24 @@
         function decrement2() {
             if (counter2 > 0) 
                 counter2--;
-                counter2Element.textContent = counter2;''
+                counter2Element.textContent = counter2;""
             if (counter2 == 0)
                 hideText(2)
         }
+
+        function redirectToCheckout() {
+            sessionStorage.setItem("counter1", counter1);
+            sessionStorage.setItem("counter2", counter2);
+            sessionStorage.setItem("Total", Total);
+            sessionStorage.setItem("BitcoinTotal", BitcoinTotal);
+            sessionStorage.setItem("LitecoinTotal",  LitecoinTotal); 
+            sessionStorage.setItem("EthereumTotal",  EthereumTotal);
+            sessionStorage.setItem("DogecoinTotal",   DogecoinTotal);
+
+            window.location.href = "https://vlingman.github.io/checkout.html";
+        }
+
+        Checkout.addEventListener("click", redirectToCheckout);
 
         function displayText(n) {
             if (n==1)
