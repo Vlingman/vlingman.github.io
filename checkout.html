@@ -80,7 +80,6 @@
           Address: enterAddress.value,
           Products: counter1 + "x Product 1, " + counter2 + "x Product 2",
           Price: Total + " SEK, " + BitcoinTotal + " BTC, " + LitecoinTotal + " LTC, " + EthereumTotal + " ETH, " + DogecoinTotal + " DOGE"
-
       })
       .then(()=>{
         alert("Customer added")
@@ -88,7 +87,6 @@
       .catch((error)=>{
         alert("Error")
       });
-
     }
 
     const counter1Value = sessionStorage.getItem("counter1");
@@ -119,7 +117,7 @@
     const DogecoinCartTotalDisplay = document.getElementById("DogecoinCartTotalDisplay");
     DogecoinCartTotalDisplay.textContent = DogecoinCartTotal;
 
-    Insert.addEventListener('click', insertData);
+    Insert.addEventListener("click", insertData);
   </script>
 
 </body>
